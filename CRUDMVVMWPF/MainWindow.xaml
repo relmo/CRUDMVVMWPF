@@ -1,0 +1,38 @@
+﻿<Window x:Class="CRUDMVVMWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRUDMVVMWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card Margin="5" Grid.Column="0">
+            
+        </materialDesign:Card>
+        <materialDesign:Card Margin="5" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="WhiteSmoke" BorderThickness="1" Grid.Row="0" Margin="5"/>
+                <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding Students}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
+                            <GridViewColumn Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
+                            <GridViewColumn Header="Birth Day" DisplayMemberBinding="{Binding BirthDay}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
