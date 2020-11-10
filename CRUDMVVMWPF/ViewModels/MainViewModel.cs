@@ -15,7 +15,7 @@ namespace CRUDMVVMWPF.ViewModels
         public ObservableCollection<Student> Students
         {
             get { return _students; }
-            set { _students = value; OnPropertyChanged("Students"); }
+            set { _students = value; OnPropertyChanged(nameof(Students)); }
         }
 
         #endregion

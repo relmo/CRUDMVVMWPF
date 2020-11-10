@@ -25,7 +25,7 @@
                 <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding Students}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
                             <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
                             <GridViewColumn Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
                             <GridViewColumn Header="Birth Day" DisplayMemberBinding="{Binding BirthDay}"/>
