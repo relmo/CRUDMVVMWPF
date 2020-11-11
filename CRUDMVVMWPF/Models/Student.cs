@@ -25,6 +25,7 @@ namespace CRUDMVVMWPF.Models
         public string LastName { get; set; }
         public string FullName { get; set; }
         public string BirthDay { get; set; }
+        public string Image { get; set; }
 
         
     }

@@ -4,35 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRUDMVVMWPF"
+        xmlns:converter="clr-namespace:CRUDMVVMWPF.Converter"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <materialDesign:Card Margin="5" Grid.Column="0">
-            
-        </materialDesign:Card>
-        <materialDesign:Card Margin="5" Grid.Column="1">
+        Title="MainWindow" Height="750" Width="1200">
+    
+    <Window.Resources>
+        <!--<converter:ListViewIndexConverter x:Key="ListViewIndex"/>-->
+    </Window.Resources>
+
+    <materialDesign:DialogHost IsOpen="{Binding IsShowDialog}" DialogContent="{Binding DialogUc}">
+        <ContentControl>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="0.3*"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="WhiteSmoke" BorderThickness="1" Grid.Row="0" Margin="5"/>
-                <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding Students}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="STT" DisplayMemberBinding="{Binding}"/>
-                            <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
-                            <GridViewColumn Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
-                            <GridViewColumn Header="Birth Day" DisplayMemberBinding="{Binding BirthDay}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <materialDesign:Card Margin="5" Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.3*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="WhiteSmoke" BorderThickness="1" Grid.Row="0" Margin="5"/>
+                        <Image Grid.Row="0" Margin="10" Source="{Binding Image}"/>
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="Last Name : " FontSize="18"/>
+                                <TextBlock Text="{Binding LastName}" FontSize="18" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="Full Name : " FontSize="18"/>
+                                <TextBlock Text="{Binding FullName}" FontSize="18" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <TextBlock Text="Birth Day : " FontSize="18"/>
+                                <TextBlock Text="{Binding FullName}" FontSize="18" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Margin="5" Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="0.3*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="WhiteSmoke" BorderThickness="1" Grid.Row="0" Margin="5"/>
+                        <ListView Grid.Row="0" Margin="10" ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}">
+                            <ListView.View>
+                                <GridView>
+                                    <!--<GridViewColumn Header="STT" DisplayMemberBinding="{Binding RelativeSource={RelativeSource Ancestor, AncestorType={x:Type ListItem}}, Converter={StaticResource ListViewIndex}}"/>-->
+                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding Id}"/>
+                                    <GridViewColumn Header="Last Name" DisplayMemberBinding="{Binding LastName}"/>
+                                    <GridViewColumn Header="Full Name" DisplayMemberBinding="{Binding FullName}"/>
+                                    <GridViewColumn Header="Birth Day" DisplayMemberBinding="{Binding BirthDay}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button Content="Add" Command="{Binding ShowDialogAddStudentCMD}"/>
+                            <Button Content="Edit" Command="{Binding ShowDialogEditStudentCMD}"/>
+                            <Button Content="Delete" Command="{Binding DeleteStudentCMD}"/>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:Card>
             </Grid>
-        </materialDesign:Card>
-    </Grid>
+        </ContentControl>
+    </materialDesign:DialogHost>
 </Window>
